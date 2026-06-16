@@ -1,7 +1,7 @@
 replicaCount: 2
 image:
   repository: 465362303741.dkr.ecr.ap-south-1.amazonaws.com/django-ecommerce-platform
-  tag: fbd1affa64a2e1334e9345deeb1bb2b6ac0ba728
+  tag: 8e98a98056cdf135e4caeeaaf394018b17d4dc2f
 service:
   port: 8000
 resources:
