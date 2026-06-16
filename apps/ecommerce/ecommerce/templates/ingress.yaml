@@ -1,37 +1,26 @@
 apiVersion: networking.k8s.io/v1
-
 kind: Ingress
-
 metadata:
-
   name: ecommerce
-
   annotations:
-
     kubernetes.io/ingress.class: alb
-
     alb.ingress.kubernetes.io/scheme: internet-facing
-
     alb.ingress.kubernetes.io/target-type: ip
-
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP":80},{"HTTPS":443}]'
+    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:465362303741:certificate/1ca63360-2e22-4b92-bb30-02092907ebaf
+    alb.ingress.kubernetes.io/healthcheck-path: /
+    alb.ingress.kubernetes.io/success-codes: "200,301,302"
 spec:
-
+  ingressClassName: alb
   rules:
-
-  - http:
-
-      paths:
-
-      - path: /
-
-        pathType: Prefix
-
-        backend:
-
-          service:
-
-            name: ecommerce
-
-            port:
-
-              number: 80
+    - host: django.narendra-clouddevops.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ecommerce
+                port:
+                  number: 80
