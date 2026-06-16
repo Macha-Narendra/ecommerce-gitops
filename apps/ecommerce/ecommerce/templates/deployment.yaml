@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: ecommerce
+
+spec:
+
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      app: ecommerce
+
+  template:
+
+    metadata:
+      labels:
+        app: ecommerce
+
+    spec:
+
+      containers:
+
+      - name: ecommerce
+
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+
+        imagePullPolicy: Always
+
+        ports:
+
+        - containerPort: 8000
+
+        env:
+
+        - name: SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: SECRET_KEY
+
+        - name: DB_HOST
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DB_HOST
+
+        - name: DB_NAME
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DB_NAME
+
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DB_USER
+        
+        - name: DB_PORT
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DB_PORT
+
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DB_PASSWORD
+
+        resources:
+{{ toYaml .Values.resources | indent 10 }}

@@ -1,0 +1,17 @@
+replicaCount: 2
+
+image:
+  repository: 465362303741.dkr.ecr.ap-south-1.amazonaws.com/ecommerce-platform
+  tag: latest
+
+service:
+  port: 8000
+
+resources:
+  requests:
+    cpu: 750m
+    memory: 512Mi
+
+  limits:
+    cpu: 1000m
+    memory: 1Gi
