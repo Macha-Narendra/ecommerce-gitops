@@ -11,6 +11,8 @@ metadata:
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-south-1:465362303741:certificate/1ca63360-2e22-4b92-bb30-02092907ebaf
     alb.ingress.kubernetes.io/healthcheck-path: /
     alb.ingress.kubernetes.io/success-codes: "200,301,302"
+    external-dns.alpha.kubernetes.io/hostname: django.narendra-clouddevops.com
+
 spec:
   ingressClassName: alb
   rules:
