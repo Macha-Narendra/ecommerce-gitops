@@ -70,6 +70,16 @@ spec:
             secretKeyRef:
               name: ecommerce-secret
               key: DB_PASSWORD
+        - name: DEBUG
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DEBUG
+        - name: DJANGO_ENV
+          valueFrom:
+            secretKeyRef:
+              name: ecommerce-secret
+              key: DJANGO_ENV
 
         resources:
 {{ toYaml .Values.resources | indent 10 }}
